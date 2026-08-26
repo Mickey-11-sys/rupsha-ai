@@ -8,8 +8,16 @@ import json
 from datetime import datetime
 import sys
 
-sys.path.insert(0, "RUPSHA")
-import logger
+try:
+    import logger
+except ImportError:
+    # If logger.py is missing, create a dummy so nothing crashes
+    class DummyLogger:
+        @staticmethod
+        def info(msg): print(f"[INFO] {msg}")
+        @staticmethod
+        def warning(msg): print(f"[WARN] {msg}")
+    logger = DummyLogger()
 
 import os
 DB_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rupsha_memory.db")
