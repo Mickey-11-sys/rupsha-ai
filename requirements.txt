@@ -1,0 +1,8 @@
+groq
+gradio>=4.0
+python-dotenv
+duckduckgo-search
+edge-tts
+PyPDF2
+sentence-transformers
+chromadb
