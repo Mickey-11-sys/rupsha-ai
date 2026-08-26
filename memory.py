@@ -11,7 +11,8 @@ import sys
 sys.path.insert(0, "RUPSHA")
 import logger
 
-DB_FILE = "RUPSHA/rupsha_memory.db"
+import os
+DB_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rupsha_memory.db")
 
 
 def get_connection():
