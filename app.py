@@ -32,8 +32,12 @@ if BASE_DIR not in sys.path:
 
 import config
 from memory import init_database
-init_database()
 from ui import demo
+
+if not config.GROQ_API_KEY:
+    print("⚠️ WARNING: GROQ_API_KEY not set. Add it in Settings → Secrets")
+
+init_database()
 
 print("=" * 50)
 print("🌸 RUPSHA on Hugging Face")
@@ -41,7 +45,18 @@ print("=" * 50)
 if config.GROQ_API_KEY:
     print("✅ GROQ_API_KEY found")
 else:
-    print("❌ GROQ_API_KEY missing! Add it in Settings → Secrets")
+    print("❌ GROQ_API_KEY missing!")
 print(f"👤 User: {config.USER_NAME}")
 print(f"🤖 Model: {config.MODEL_NAME}")
 print("=" * 50)
+
+# ============================================
+# THIS IS THE MISSING PART — ADD IT
+# ============================================
+if __name__ == "__main__":
+    print("🚀 Starting Gradio server...")
+    demo.launch(
+        share=True,
+        server_name="0.0.0.0",
+        server_port=7860
+    )
